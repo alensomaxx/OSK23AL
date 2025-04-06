@@ -10,7 +10,7 @@ import csv
 # Constants
 MEMORY_SIZE = 1000
 OBJECT_RANGE = (20, 100)
-ALLOCATION_CYCLES = 20
+ALLOCATION_CYCLES = 30
 DELAY = 500  # milliseconds
 
 class MemoryBlock:

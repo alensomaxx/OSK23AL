@@ -1,125 +1,158 @@
-# Efficient Garbage Collection in OS (Mark & Sweep Visual Simulator)
-OS K23AL GARBAGE COLLECTOR PROJECT
-## 📌 Project Title
-**Efficient Garbage Collection in OS**
+# 🧠 Efficient Garbage Collection in OS  
+**(Mark & Sweep + Reference Counting Visual Simulator)**  
+**OSK23AL Garbage Collector Project**
 
 ---
 
-## 🧠 Introduction
-This project simulates an optimized Garbage Collection (GC) mechanism using the **Mark and Sweep** algorithm, designed for educational and visualization purposes. It demonstrates how memory management works in user-space and provides real-time graphical feedback for allocation, collection, and fragmentation handling.
-
-Built with Python, this simulator is modular, lightweight, and a powerful tool for learning about how GC systems work at a conceptual level.
+## 📌 Project Title  
+**Efficient Garbage Collection in Operating Systems**
 
 ---
 
-## 🎯 Objectives
-- Implement a simulated GC system using **Mark and Sweep**.
-- Visualize memory allocation, deallocation, and compaction in real-time.
-- Minimize fragmentation through memory compaction techniques.
-- Benchmark and analyze memory usage across GC cycles.
+## 🧠 Introduction  
+This project simulates optimized Garbage Collection (GC) mechanisms using two classic algorithms: **Mark and Sweep** and **Reference Counting**.
+
+It provides real-time graphical feedback for memory allocation, collection, and fragmentation, and is built to help you understand how memory management works in modern OS environments at a conceptual level.  
+
+Developed with Python, this tool uses a lightweight GUI to visualize GC operations and performance metrics cycle-by-cycle.
+
+---
+
+## 🎯 Objectives  
+- Implement simulated GC algorithms: **Mark and Sweep** + **Reference Counting**  
+- Visualize allocation, deallocation, sweeping, and compaction in real-time  
+- Measure GC performance with live **benchmarking**  
+- Enable data **export** for reporting and analysis
 
 ---
 
 ## 🧩 Modules
-### 1. Core GC Logic
-- Memory block allocation and deallocation
-- Mark phase (simulates reachability)
-- Sweep phase (collects unmarked memory)
-- Compaction for fragmentation reduction
 
-### 2. Monitoring & Analysis
-- Real-time memory usage graph
-- Fragmentation heatmap view
-- GC status updates per cycle
+### 1. Core GC Logic  
+- Allocate/deallocate memory blocks dynamically  
+- GC Algorithms:  
+  - **Mark and Sweep** (mark reachables, sweep unreachables)  
+  - **Reference Counting** (collect when reference count = 0)  
+- Compaction to reduce fragmentation
 
-### 3. Simulation Environment
-- Interactive GUI using **Tkinter** + **Matplotlib**
-- Adjustable GC cycle timing
-- Status feedback for each simulation cycle
+### 2. Monitoring & Analysis  
+- Real-time memory usage chart  
+- Fragmentation heatmap  
+- Benchmark: average & per-cycle GC time  
+- Cycle-by-cycle status updates
 
----
-
-## 💻 Technologies Used
-- Python 3
-- Tkinter (GUI)
-- Matplotlib (Visualization)
-- NumPy
+### 3. Simulation & Test Environment  
+- Built with **Tkinter + Matplotlib**  
+- Adjustable GC speed  
+- Run up to 20 GC cycles in real-time  
+- Log memory usage + GC time per cycle
 
 ---
 
-## 📊 Features
-- Live memory allocation and GC cycle
-- Real-time visualization of memory fragmentation
-- GC stats after each cycle (used memory, reclaimed memory)
-- GUI with a "Start Simulation" button
+## 💻 Tech Stack  
+- Python 3  
+- Tkinter – GUI  
+- Matplotlib – Visualization  
+- NumPy – Simulation arrays  
+- CSV – Log export  
+- Time – Benchmarking
 
 ---
 
-## ❓ Real-time vs Real Memory Usage
+## 📊 Core Features
 
-> ### ⚙️ **Current GC Simulator: What’s It Doing?**
-> 
-> ✅ It is running in **real-time**, meaning:
-> - It **allocates**, **marks**, **sweeps**, and **compacts** memory block-by-block **live per cycle**.
-> - It **visualizes each step instantly** with updated graphs and memory layout.
-> 
-> ❌ But it is **not using your actual system’s memory** or OS processes.
-> - It’s using **`random` numbers** to simulate memory allocation sizes, object life cycles, and reachability (i.e., whether an object should be collected).
-> - This is done to mimic how a GC works **conceptually**, not to monitor your local PC’s RAM.
-> 
-> ### 🔬 Why This Is Done:
-> - Accessing actual system memory (heap, stack, etc.) is **dangerous**, OS-restricted, and **not portable** across platforms.
-> - The project goal is about **designing an efficient GC system**, not monitoring real RAM usage (which would be more like building a system profiler).
-> 
-> ### ✅ Pros of This Approach:
-> - **Safe & Cross-platform**
-> - **Easy to visualize and benchmark**
-> - **Fully custom logic for GC simulation**
-> - Ideal for projects, reports, viva, and extending into ML/optimization later
+### 🧠 Algorithms
+- ✅ **Mark and Sweep GC**
+- ✅ **Reference Counting GC**
+- 🧩 Switch algorithms via dropdown in GUI
 
-> ### 💡 Bonus Idea:
-> If you *do* want to monitor real memory stats (like how much RAM your Python program is using), we can integrate something like:
->
-> ```python
-> import psutil
->
-> memory_info = psutil.virtual_memory()
-> print(f"Available RAM: {memory_info.available}")
-> ```
-> 
-> That gives real data, but it won't be used inside GC simulation logic — more like a system stat overlay.
+### 🎯 Real-Time Visualization
+- 📈 Live memory usage line graph
+- 📊 Fragmentation layout heatmap
+- 🔁 Simulated allocation, GC, compaction per cycle
+
+### ⏱ Benchmarking & Logs
+- GC time per cycle and average time across session  
+- Final summary upon completion  
+- ✅ Export logs as `.csv`
+
+### 🖥️ GUI Interface
+- "Start Simulation" button  
+- GC algorithm dropdown  
+- Benchmark + status labels  
+- Data export button
+
+---
+
+## ❓ Real-Time vs System RAM  
+
+> This simulator runs in **real-time**, but:  
+> ❌ It does **not use your PC’s actual RAM**  
+> ✅ All workloads are randomly generated to simulate memory behavior  
+> ✅ Each object has randomly assigned size and reachability (or ref count)  
+
+### Why simulate?
+- Safe, cross-platform  
+- No OS-level access needed  
+- Educational and customizable
+
+> *Bonus idea:* Use `psutil` to monitor real RAM (optional):
+```python
+import psutil
+print(psutil.virtual_memory().available)
+```
 
 ---
 
 ## 🚀 How to Run
-1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/OSK23AL
 cd OSK23AL
-```
-
-2. Run the simulation:
-```bash
+pip install matplotlib numpy
 python gc_gui.py
 ```
 
-> **Make sure** you have Python 3 and the required libraries:
-```bash
-pip install matplotlib numpy
+---
+
+## 📤 Export Format
+On clicking **Export Logs to CSV**, you’ll get:
+```csv
+Cycle, Used Memory, GC Time (sec)
+1, 145, 0.00234
+2, 198, 0.00321
+...
 ```
 
 ---
 
 ## 📸 Screenshots
-*Add screenshots of GUI window, memory usage graph, fragmentation layout here*
+*Add these for GitHub previews:*  
+- GUI window with dropdown + buttons  
+- Memory usage graph  
+- Fragmentation layout  
+- Exported CSV preview
 
 ---
 
 ## 📈 Future Scope
-- Add support for **Reference Counting**, **Generational GC**
-- Integrate **real RAM usage stats** using `psutil`
-- Add export feature for logs and benchmarking results
-- Deploy as a standalone cross-platform desktop app
+- Add support for **Generational GC** and **Hybrid GC**
+- Real system memory overlays via `psutil`
+- Export logs + visuals to **PDF reports**
+- Create a web version using **Streamlit** or **Flask**
+
+---
+
+## 📁 Project Structure
+
+```bash
+📦 OSK23AL
+├── Versions/                  # Archived versions and dev iterations
+├── Final-Version1.5.py   # Final Python script with all features
+├── OS Report K23AL 15 16 17.pdf  # Full documentation/report
+├── README.md                 # Project overview and usage guide
+├── /exports                  # Logs exported as CSV
+└── requirements.txt          # Python dependencies
+```
 
 ---
 
@@ -129,5 +162,5 @@ GitHub: [@alensomaxx](https://github.com/alensomaxx)
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License.
+## 📄 License  
+This project is licensed under the **MIT License**

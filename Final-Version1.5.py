@@ -7,6 +7,7 @@ import random
 import time
 import csv
 
+
 # Constants
 MEMORY_SIZE = 1000
 OBJECT_RANGE = (20, 100)
